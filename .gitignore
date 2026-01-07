@@ -1,0 +1,14 @@
+# Rider / IntelliJ
+.idea/
+
+# Build output
+**/bin/
+**/obj/
+
+# Secrets / local config
+**/appsettings.json
+**/appsettings.Development.json
+
+# OS
+.DS_Store
+Thumbs.db
