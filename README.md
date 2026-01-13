@@ -44,7 +44,80 @@ The system extracts structured metadata, validates it with the user, stores it, 
 - ngrok (local webhook testing)
 
 ---
+## Getting Started (Local Development)
+### Prerequisites
 
+- .NET 8 SDK
+- PostgreSQL
+- Telegram Bot Token
+- OpenAI API Key
+- ngrok account (free tier is sufficient)
+
+### Configuration
+
+Create `appsettings.Development.json` based on `appsettings.example.json`:
+
+```json
+{
+  "ConnectionStrings": {
+    "Postgres": "Host=localhost;Port=5432;Database=revisor;Username=postgres;Password=<YOUR_DB_PASSWORD>"
+  },
+  "Telegram": {
+    "BotToken": "<YOUR_TELEGRAM_BOT_TOKEN>"
+  },
+  "OpenAI": {
+    "ApiKey": "<YOUR_OPENAI_API_KEY>",
+    "Model": "gpt-4o-mini"
+  }
+}
+```
+
+#### Database Setup
+
+Apply Entity Framework Core migrations:
+
+```
+dotnet ef database update
+```
+
+#### Running the Application
+
+Start the application locally:
+
+```
+dotnet run
+```
+
+The service will start on:
+```
+http://localhost:5023
+```
+
+Health check endpoint:
+```
+GET /health
+```
+#### Telegram Webhook Setup (Local Development)
+
+Start ngrok:
+```
+ngrok http 5023
+```
+
+Copy the generated HTTPS forwarding URL, for example:
+```
+https://xxxx.ngrok-free.dev
+```
+
+Configure the Telegram webhook:
+```
+https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_TOKEN>/setWebhook?url=https://xxxx.ngrok-free.dev/telegram/update
+```
+
+Verify webhook status:
+```
+https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_TOKEN>/getWebhookInfo
+```
 ## Core Design Decisions
 
 ### Structured AI Output
