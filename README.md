@@ -80,6 +80,10 @@ Apply Entity Framework Core migrations:
 dotnet ef database update
 ```
 
+PostgreSQL can be started locally using docker-compose:
+```bash
+docker compose up -d
+
 #### Running the Application
 
 Start the application locally:
