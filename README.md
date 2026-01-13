@@ -120,8 +120,7 @@ https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_TOKEN>/setWebhook?url=https://xxx
 
 Verify webhook status:
 ```
-https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_TOKEN>/getWebhookInfo
-```
+https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_TOKEN>/getWebhookInfo```
 ## Core Design Decisions
 
 ### Structured AI Output
