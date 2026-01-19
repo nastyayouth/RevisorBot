@@ -19,9 +19,9 @@ services:
       dockerfile: Dockerfile
     environment:
       ASPNETCORE_URLS: http://0.0.0.0:8080
-      ConnectionStrings__Postgres: Host=db;Port=5432;Database=revisor;Username=postgres;Password=postgres
-      Telegram__BotToken: "1359286619:AAFIXFu2D9D4JWSm5Tah2tf1VtGuuZxa-Io"
-      OpenAI__ApiKey: "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"
+      ConnectionStrings__Postgres: Host=db;Port=5432;Database=revisor;Username=postgres;Password=<password>
+      Telegram__BotToken: "<Add your Telegram bot token here>"
+      OpenAI__ApiKey: "<Add your OpenAI API key here>"
       OpenAI__Model: "gpt-4o-mini"
     ports:
       - "8080:8080"

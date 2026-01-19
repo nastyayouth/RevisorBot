@@ -5,27 +5,49 @@ public class ExpiryNotifierHostedService : BackgroundService
 {
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly ITelegramBotClient _bot;
+    private readonly ILogger<ExpiryNotifierHostedService> _logger;
+  
 
     public ExpiryNotifierHostedService(
         IServiceScopeFactory scopeFactory,
-        ITelegramBotClient bot)
+        ITelegramBotClient bot,
+        ILogger<ExpiryNotifierHostedService> logger)
     {
         _scopeFactory = scopeFactory;
         _bot = bot;
+        _logger = logger;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // первый запуск сразу
-        await CheckAsync(stoppingToken);
+        try
+        {
+            // первый запуск сразу
+            await CheckAsync(stoppingToken);
 
+           
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Expiry notifier first run failed");
+        }
+        
         // затем — раз в 7 дней
         var timer = new PeriodicTimer(TimeSpan.FromDays(7));
 
         while (await timer.WaitForNextTickAsync(stoppingToken))
         {
-            await CheckAsync(stoppingToken);
+            try
+            {
+                await CheckAsync(stoppingToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Expiry notifier run failed");
+            }
         }
+
+ 
     }
 
     private async Task CheckAsync(CancellationToken ct)

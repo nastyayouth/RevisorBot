@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot.Types;
 
@@ -6,11 +7,14 @@ using Telegram.Bot.Types;
 public class TelegramWebhookController : ControllerBase
 {
     private readonly IUpdateDispatcher _dispatcher;
-    private readonly ILogger<RequestLoggingMiddleware> _logger;
+    private readonly ILogger<TelegramWebhookController> _logger;
 
-    public TelegramWebhookController(IUpdateDispatcher dispatcher)
+    public TelegramWebhookController(IUpdateDispatcher dispatcher,
+        ILogger<TelegramWebhookController> logger
+    )
     {
         _dispatcher = dispatcher;
+        _logger = logger;
     }
 
     [HttpPost("update")]
