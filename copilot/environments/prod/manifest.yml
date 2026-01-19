@@ -1,0 +1,3 @@
+name: prod
+type: Environment
+region: us-east-2
