@@ -27,6 +27,7 @@ The system extracts structured metadata, validates it with the user, stores it, 
 - Automatic Telegram notifications
 - Product listing and deletion commands
 
+
 ---
 
 ## Architecture Overview
