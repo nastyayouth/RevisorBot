@@ -140,6 +140,38 @@ Extracted data is presented to the user and stored only after explicit confirmat
 Expiration checks are executed by a hosted background service, fully decoupled from request handling.
 
 ---
+## Web Dashboard (Frontend)
+
+The project includes a web-based dashboard built from scratch to complement the Telegram bot.
+
+The frontend is intentionally minimal and focuses on:
+- Reviewing extracted products
+- Searching and deleting items
+- Managing notification-related settings
+- Visualizing expiration status
+
+### Tech Stack
+
+- React + TypeScript
+- Vite
+- Fetch API
+- No UI framework at the initial stage (progressive enhancement)
+
+### Architecture Principles
+
+- UI components are **pure and stateless**
+- All data access goes through a dedicated API layer
+- Backend remains the single source of truth
+- Frontend mirrors backend domain concepts
+
+### Local Development
+
+```
+npm install
+npm run dev
+```
+
+---
 
 ## Data Model Overview
 
