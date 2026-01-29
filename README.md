@@ -4,6 +4,11 @@ Revisor Bot is a backend-focused Telegram application that extracts product expi
 
 The system is built as a reliable MVP demonstrating real-world backend engineering practices, including webhook-based integrations, AI-powered structured data extraction, background processing, and safe persistence.
 
+## 🎬 Live Demo
+<p align="center">
+<img src="docs/demo.gif" width="30%" alt="Revisor demo" />
+</p>
+
 ---
 
 ## Problem Statement
