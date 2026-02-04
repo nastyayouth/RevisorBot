@@ -6,7 +6,6 @@
 **/obj/
 
 # Secrets / local config
-**/appsettings.json
 **/appsettings.Development.json
 
 # OS
