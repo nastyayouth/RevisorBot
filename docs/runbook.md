@@ -99,15 +99,28 @@ db.Database.Migrate();
 SELECT * FROM "__EFMigrationsHistory";
 ```
 ---
-## Telegram Bot — Polling (текущий режим)
+## Telegram Bot — Update Mode (configurable)
 
-⚠ В продакшене используется Polling, webhook отключён.
+Режим доставки апдейтов теперь выбирается через конфиг `Telegram:UsePolling`.
 
 Активный сервис
+- `true`  → работает `TelegramPollingService`
+- `false` → polling не регистрируется, используется webhook endpoint `/telegram/update`
+
+Актуальная логика в `Program.cs`:
 ```
-builder.Services.AddHostedService<TelegramPollingService>();
+var usePolling = builder.Configuration.GetValue<bool?>("Telegram:UsePolling") ?? true;
+if (usePolling)
+{
+    builder.Services.AddHostedService<TelegramPollingService>();
+}
 ```
-Логи polling
+Проверка режима в логах приложения:
+```
+Telegram update mode: Polling
+Telegram update mode: Webhook
+```
+### Polling mode
 ```
 copilot svc logs --name revisor-service --env prod | Select-String Telegram
 ```
@@ -119,19 +132,13 @@ copilot svc logs --name revisor-service --env prod | Select-String Telegram
 
 ---
 
-## Telegram Bot — Webhook (НЕ используется сейчас)
-
+### Webhook mode
 Проверка webhook:
-
 ```
 irm "https://api.telegram.org/bot<TOKEN>/getWebhookInfo"
 ```
 
-Webhook должен быть пустым, если polling включён:
-
-```
-"url": ""
-```
+Если polling выключен и webhook включён, поле `url` должно содержать endpoint.
 
 ---
 
