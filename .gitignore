@@ -1,13 +1,48 @@
 # Rider / IntelliJ
 .idea/
 
-# Build output
+# Build output (.NET)
 **/bin/
 **/obj/
 
 # Secrets / local config
 **/appsettings.Development.json
+**/appsettings.json
 
 # OS
 .DS_Store
 Thumbs.db
+
+# =========================
+# React / Node.js
+# =========================
+
+# dependencies
+**/node_modules/
+
+# build artifacts
+**/dist/
+**/build/
+**/out/
+**/.next/
+
+# caches
+**/.vite/
+**/.cache/
+**/.parcel-cache/
+**/.turbo/
+**/coverage/
+**/.eslintcache
+**/*.log
+
+# env files (don't commit secrets)
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+
+# editor (optional)
+.vscode/
+
+# Frontend (WIP) - keep local only
+my-app/
