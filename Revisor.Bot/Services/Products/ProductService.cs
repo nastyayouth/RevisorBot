@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
-using WebApplication1.Entities;
+using RevisorBot.Entities;
 
 
 public class ProductService : IProductService
@@ -110,12 +110,12 @@ public class ProductService : IProductService
         }
     }
 
-    private async Task<WebApplication1.Entities.User> UpsertUser(long chatId, CancellationToken ct)
+    private async Task<RevisorBot.Entities.User> UpsertUser(long chatId, CancellationToken ct)
     {
         var user = await _db.Users.SingleOrDefaultAsync(x => x.TelegramChatId == chatId, ct);
         if (user != null) return user;
 
-        user = new WebApplication1.Entities.User
+        user = new RevisorBot.Entities.User
         {
             Id = Guid.NewGuid(),
             TelegramChatId = chatId,

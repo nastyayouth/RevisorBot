@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebApplication1.Migrations
+namespace RevisorBot.Migrations
 {
     /// <inheritdoc />
     public partial class ExpiryDateAsDate : Migration

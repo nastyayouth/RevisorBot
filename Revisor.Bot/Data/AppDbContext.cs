@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Entities;
+using RevisorBot.Entities;
 
 public class AppDbContext : DbContext
 {

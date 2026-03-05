@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace WebApplication1.Migrations
+namespace RevisorBot.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260107202828_ExpiryDateAsDate")]
@@ -24,7 +24,7 @@ namespace WebApplication1.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApplication1.Entities.Product", b =>
+            modelBuilder.Entity("RevisorBot.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.User", b =>
+            modelBuilder.Entity("RevisorBot.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,9 +82,9 @@ namespace WebApplication1.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Product", b =>
+            modelBuilder.Entity("RevisorBot.Entities.Product", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.User", "User")
+                    b.HasOne("RevisorBot.Entities.User", "User")
                         .WithMany("Products")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -93,7 +93,7 @@ namespace WebApplication1.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.User", b =>
+            modelBuilder.Entity("RevisorBot.Entities.User", b =>
                 {
                     b.Navigation("Products");
                 });

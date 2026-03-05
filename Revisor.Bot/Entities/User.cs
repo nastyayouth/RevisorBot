@@ -1,4 +1,4 @@
-namespace WebApplication1.Entities;
+namespace RevisorBot.Entities;
 
 public class User
 {
