@@ -235,5 +235,8 @@ npm run dev
 
 This project was developed as a portfolio application to demonstrate modern backend engineering practices and AI-assisted workflows.
 
+## Usage / Permissions
+This repository is provided for viewing and evaluation purposes only.
+No license is granted for use, copying, modification, or distribution.
 
 
