@@ -67,8 +67,11 @@ builder.Services.AddScoped<IUpdateDispatcher, UpdateDispatcher>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ITelegramSender, TelegramSender>();
 builder.Services.AddScoped<TelegramFileService>();
-builder.Services.AddHostedService<TelegramPollingService>();
-
+var usePolling = builder.Configuration.GetValue<bool?>("Telegram:UsePolling") ?? true;
+if (usePolling)
+{
+    builder.Services.AddHostedService<TelegramPollingService>();
+}
 builder.Services.AddScoped<IOpenAiProductExtractor, OpenAiProductExtractor>();
 
 builder.Services.AddControllers();
@@ -87,6 +90,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.Logger.LogInformation("Telegram update mode: {Mode}", usePolling ? "Polling" : "Webhook");
 app.UseCors("Frontend"); 
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();

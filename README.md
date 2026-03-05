@@ -61,22 +61,20 @@ The system extracts structured metadata, validates it with the user, stores it, 
 
 ### Configuration
 
-Create `appsettings.Development.json` based on `appsettings.example.json`:
-
-```json
-{
-  "ConnectionStrings": {
-    "Postgres": "Host=localhost;Port=5432;Database=revisor;Username=postgres;Password=<YOUR_DB_PASSWORD>"
-  },
-  "Telegram": {
-    "BotToken": "<YOUR_TELEGRAM_BOT_TOKEN>"
-  },
-  "OpenAI": {
-    "ApiKey": "<YOUR_OPENAI_API_KEY>",
-    "Model": "gpt-4o-mini"
-  }
-}
+Create local settings from the template:
+```bash
+cp Revisor.Bot/appsettings.example.json Revisor.Bot/appsettings.Development.json
 ```
+
+Then fill in your real secrets (`Telegram:BotToken`, `OpenAI:ApiKey`, database password).
+
+If you want to disable polling (for webhook mode), set:
+
+```
+"Telegram": { "UsePolling": false }
+```
+(or environment variable `Telegram__UsePolling=false`).
+
 
 #### Database Setup
 
@@ -96,7 +94,7 @@ docker compose up -d
 Start the application locally:
 
 ```
-dotnet run
+dotnet run --project Revisor.Bot
 ```
 
 The service will start on:
@@ -108,7 +106,12 @@ Health check endpoint:
 ```
 GET /health
 ```
-#### Telegram Webhook Setup (Local Development)
+#### Telegram Update Delivery Modes
+
+- **Webhook is supported:** set `Telegram:UsePolling=false` and use ngrok for local end-to-end webhook testing.
+- **Current production mode:** we intentionally keep `Telegram:UsePolling=true` (runs `TelegramPollingService`) to avoid extra operational overhead around public webhook endpoint management.
+
+#### Telegram Webhook Setup (Local Development, optional)
 
 Start ngrok:
 ```
@@ -211,7 +214,7 @@ npm run dev
 ## What This Project Demonstrates
 
 - Backend system design and architecture
-- Webhook-based integrations
+- Telegram integrations (polling in production, webhook for local testing)
 - AI-assisted automation with deterministic outputs
 - Asynchronous and background processing
 - Relational data modeling and migrations
