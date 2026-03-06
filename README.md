@@ -155,6 +155,10 @@ Expiration checks are executed by a hosted background service, fully decoupled f
 The project includes a web-based dashboard built from scratch to complement the Telegram bot.
 
 The frontend is intentionally minimal and focuses on:
+> **Note:** frontend source code is intentionally not included in this public repository at the moment.
+> This repository focuses on backend architecture and Telegram/OpenAI integration.
+
+The frontend is intentionally minimal and focuses on:
 - Reviewing extracted products
 - Searching and deleting items
 - Managing notification-related settings
